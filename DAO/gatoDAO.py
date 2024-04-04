@@ -12,6 +12,26 @@ class gatoDAO:
         self.cursor.close()
         self.con.close()
 
+    def crear(self, gato):
+        query = "INSERT INTO gatos(nombre, sexo, disponibilidad, edad, foto) VALUES (%s, %s, %s ,%s, %s)"
+        try:
+            self.cursor.execute(
+                query,
+                (
+                    gato.getNombre(),
+                    gato.getSexo(),
+                    gato.getDisponibilidad(),
+                    gato.getEdad(),
+                    gato.getFoto(),
+                ),
+            )
+            self.con.commit()
+            print("Creción de gato con exito")
+        except Exception as e:
+            print(f"Error al guardar usuario: {e}")
+        finally:
+            self.close()
+
     def listar(self):
         query = "SELECT * FROM gatos"
         try:
@@ -46,7 +66,16 @@ class gatoDAO:
             self.close()
             print("Michimodificacion correcta")
         except Exception as e:
-            print(f"Error al listar gatos: {e}")
+            print(f"Error al modificar gato: {e}")
 
-
-# UPDATE empleados SET salario = %s WHERE nombre = %s", (60000, 'Juan')
+    def eliminar(self, gato):
+        query = "DELETE FROM gatos WHERE gatoID = %s"
+        try:
+            self.cursor.execute(
+                query, (gato.getId(),)
+            )  # Notice the comma after gato.getId()
+            self.con.commit()
+            self.close()
+            print("MichiEliminación exitosa")
+        except Exception as e:
+            print(f"Error al eliminar gato: {e}")
