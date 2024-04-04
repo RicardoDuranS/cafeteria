@@ -7,9 +7,7 @@ class ConnectionFactory:
         self.host = "localhost"
         self.user = "root"
         self.password = "12345678"
-        self.database = (
-            "michicaf"  # Asegúrate de que 'database' sea un atributo de la instancia
-        )
+        self.database = "michicaf"
         self.connection = None
 
     def getConnection(self):

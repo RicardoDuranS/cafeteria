@@ -36,3 +36,5 @@ class usuarioDAO:
             print(f"Error al guardar usuario: {e}")
         finally:
             self.close()
+
+    # UPDATE empleados SET salario = %s WHERE nombre = %s", (60000, 'Juan')

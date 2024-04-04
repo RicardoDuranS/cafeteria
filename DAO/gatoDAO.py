@@ -27,3 +27,26 @@ class gatoDAO:
         except Exception as e:
             print(f"Error al listar gatos: {e}")
             return []
+
+    def modificar(self, gato):
+        query = "UPDATE gatos SET nombre = %s, sexo = %s , disponibilidad = %s, edad = %s , foto = %s WHERE gatoID = %s"
+        try:
+            self.cursor.execute(
+                query,
+                (
+                    gato.getNombre(),
+                    gato.getSexo(),
+                    gato.getDisponibilidad(),
+                    gato.getEdad(),
+                    gato.getFoto(),
+                    gato.getId(),
+                ),
+            )
+            self.con.commit()
+            self.close()
+            print("Michimodificacion correcta")
+        except Exception as e:
+            print(f"Error al listar gatos: {e}")
+
+
+# UPDATE empleados SET salario = %s WHERE nombre = %s", (60000, 'Juan')

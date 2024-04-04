@@ -9,3 +9,6 @@ class gatoController:
 
     def listar(self):
         return self.gatoDAO.listar()
+
+    def modificar(self, gato):
+        self.gatoDAO.modificar(gato)
