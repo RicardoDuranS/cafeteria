@@ -1,9 +1,9 @@
 from ConnectionFactory.ConnectionFactory import ConnectionFactory
-import pymysql
+import mysql
 from Modelo.solicitud import Solicitud
 
 
-class solicitudesDAO:
+class solicitudDAO:
     def __init__(self, con):
         self.con = con.getConnection()
         self.cursor = self.con.cursor()
@@ -12,7 +12,8 @@ class solicitudesDAO:
         self.cursor.close()
         self.con.close()
 
-    def crear(self, solictud):
+    def guardar(self, solictud):
+        val = 1
         query = "INSERT INTO solicitudes(nombre, correo, telefono, ciudad, gato) VALUES (%s, %s, %s ,%s, %s)"
         try:
             self.cursor.execute(
@@ -26,11 +27,11 @@ class solicitudesDAO:
                 ),
             )
             self.con.commit()
-            print("Registro de solicitud exitosa")
-        except Exception as e:
-            print(f"Error al guardar usuario: {e}")
+        except mysql.connector.errors.IntegrityError as e:
+            var = e.args[0]
         finally:
             self.close()
+            return val
 
     def listar(self):
         query = "SELECT * FROM solicitudes"
