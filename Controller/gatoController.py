@@ -10,11 +10,25 @@ class gatoController:
     def listar(self):
         return self.gatoDAO.listar()
 
-    def crear(self, gato):
-        self.gatoDAO.crear(gato)
+    def registrar(self, gato):
+        resp = self.gatoDAO.registrar(gato)
+        if resp == 1:
+            return "Registro exitoso"
+        elif resp == 1062:
+            return "Registro duplicado"
+        else:
+            return resp
 
     def modificar(self, gato):
-        self.gatoDAO.modificar(gato)
+        resp = self.gatoDAO.modificar(gato)
+        if resp == 1:
+            return "Modificación exitoso"
+        else:
+            return resp
 
     def eliminar(self, gato):
-        self.gatoDAO.eliminar(gato)
+        resp = self.gatoDAO.eliminar(gato)
+        if resp == 1:
+            return "Eliminación exitosa"
+        else:
+            return resp

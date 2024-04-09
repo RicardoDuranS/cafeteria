@@ -1,5 +1,5 @@
 from ConnectionFactory.ConnectionFactory import ConnectionFactory
-import pymysql
+import mysql
 from Modelo.gato import gato
 
 
@@ -12,7 +12,8 @@ class gatoDAO:
         self.cursor.close()
         self.con.close()
 
-    def crear(self, gato):
+    def registrar(self, gato):
+        var = 1
         query = "INSERT INTO gatos(nombre, sexo, disponibilidad, edad, foto) VALUES (%s, %s, %s ,%s, %s)"
         try:
             self.cursor.execute(
@@ -26,11 +27,11 @@ class gatoDAO:
                 ),
             )
             self.con.commit()
-            print("Creción de gato con exito")
-        except Exception as e:
-            print(f"Error al guardar usuario: {e}")
+        except mysql.connector.errors.IntegrityError as e:
+            var = e.args[0]
         finally:
             self.close()
+            return var
 
     def listar(self):
         query = "SELECT * FROM gatos"
@@ -49,6 +50,7 @@ class gatoDAO:
             return []
 
     def modificar(self, gato):
+        var = 1
         query = "UPDATE gatos SET nombre = %s, sexo = %s , disponibilidad = %s, edad = %s , foto = %s WHERE gatoID = %s"
         try:
             self.cursor.execute(
@@ -63,19 +65,21 @@ class gatoDAO:
                 ),
             )
             self.con.commit()
+        except mysql.connector.errors.IntegrityError as e:
+            var = e.args[0]
+        finally:
             self.close()
-            print("Michimodificacion correcta")
-        except Exception as e:
-            print(f"Error al modificar gato: {e}")
+            return var
 
     def eliminar(self, gato):
+        var = 1
         query = "DELETE FROM gatos WHERE gatoID = %s"
         try:
-            self.cursor.execute(
-                query, (gato.getId(),)
-            )  # Notice the comma after gato.getId()
+            self.cursor.execute(query, (gato.getId(),))
             self.con.commit()
+        except mysql.connector.Error as e:
+            var = e.args[0]
+        finally:
+            self.cursor.close()  # Asegúrate de cerrar el cursor si lo has creado aquí
             self.close()
-            print("MichiEliminación exitosa")
-        except Exception as e:
-            print(f"Error al eliminar gato: {e}")
+            return var

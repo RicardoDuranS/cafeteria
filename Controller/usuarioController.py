@@ -14,4 +14,10 @@ class usuarioController:
             return False
 
     def crearUsuario(self, usuario):
-        self.usuarioDAO.guardar(usuario)
+        val = self.usuarioDAO.guardar(usuario)
+        if val == 1:
+            return "Usuario creado con exito"
+        elif val == 1062:
+            return "Usuario ya existente favor de ingresar otro"
+        else:
+            return val

@@ -1,6 +1,7 @@
 from Modelo.usuario import usuario
 from ConnectionFactory.ConnectionFactory import ConnectionFactory
 import pymysql
+import mysql
 
 
 class usuarioDAO:
@@ -24,15 +25,13 @@ class usuarioDAO:
             return []
 
     def guardar(self, usuario):
+        var = 1
         query = "INSERT INTO usuarios(usuario, contraseña) VALUES (%s, %s)"
         try:
             self.cursor.execute(query, (usuario.getUsuario(), usuario.getContraseña()))
             self.con.commit()
-            print("Usuario creado con exito")
-        except pymysql.IntegrityError as e:
-            if e.args[0] == 1062:  # Ensure this is an integer comparison
-                print("Usuario existente")
-        except Exception as e:
-            print(f"Error al guardar usuario: {e}")
+        except mysql.connector.errors.IntegrityError as e:
+            var = e.args[0]
         finally:
             self.close()
+            return var

@@ -1,14 +1,14 @@
 class solicitud:
-    def __init__(self, id, nombre, correo, telefono, ciudad, gato):
+    def __init__(
+        self, id=None, nombre=None, correo=None, telefono=None, ciudad=None, gato=None
+    ):
         self.id = id
         self.nombre = nombre
         self.correo = correo
         self.telefono = telefono
         self.ciudad = ciudad
         self.gato = gato
-        self.solicitudID = (
-            None  # Este atributo se asignará automáticamente en la base de datos
-        )
+        self.id = id
 
     # Métodos getter para cada atributo
     def getId(self):
