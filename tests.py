@@ -3,14 +3,23 @@ from Modelo.usuario import usuario as User
 from Modelo.gato import gato
 from Controller.gatoController import gatoController
 
-gato = gato("6", "Efervecente", "mujere", True, 5, "")
+# USER TESTS
+# User crear usuario
 
-user = ("rafaes", "kasjdfhk")
+us = User("Comprador", "L1@kik0p")
+controller = usuarioController().crearUsuario(us)
 
-usuarioController().validarUser(user)
-
+# User validar
+"""
+us = User("Comprador", "L1@kik0p")
+resp = usuarioController().validarUser(us)
+print(resp)
+"""
+# GATO TESTS
+"""
 gatoController().modificar(gato)
 
 # gatoController().crear(gato)
 
 gatoController().eliminar(gato)
+"""

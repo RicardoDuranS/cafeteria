@@ -1,5 +1,6 @@
-class Solicitudes:
-    def __init__(self, nombre, correo, telefono, ciudad, gato):
+class solicitud:
+    def __init__(self, id, nombre, correo, telefono, ciudad, gato):
+        self.id = id
         self.nombre = nombre
         self.correo = correo
         self.telefono = telefono
@@ -10,6 +11,9 @@ class Solicitudes:
         )
 
     # Métodos getter para cada atributo
+    def getId(self):
+        return self.id
+
     def getNombre(self):
         return self.nombre
 
