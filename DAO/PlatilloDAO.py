@@ -69,13 +69,12 @@ class PlatilloDAO:
 
     def eliminar(self, platillo):
         var = 1
-        query = "DELETE FROM platillos WHERE id = %s"
+        query = "DELETE FROM platillos WHERE platilloID = %s"
         try:
             self.cursor.execute(query, (platillo.getId(),))
             self.con.commit()
         except mysql.connector.Error as e:
             var = e.args[0]
         finally:
-            self.cursor.close()  # Asegúrate de cerrar el cursor si lo has creado aquí
             self.close()
             return var

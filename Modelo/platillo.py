@@ -11,7 +11,7 @@ class Platillo:
         return self.id
 
     def getNombre(self):
-        return self.id
+        return self.nombre
 
     def getDescripcion(self):
         return self.descripcion
