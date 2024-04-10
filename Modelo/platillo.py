@@ -1,5 +1,5 @@
 class Platillo:
-    def __init__(self, id, nombre, descripcion, foto):
+    def __init__(self, id=None, nombre=None, descripcion=None, foto=None):
         self.id = id
         self.nombre = nombre
         self.descripcion = descripcion
