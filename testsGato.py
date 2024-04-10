@@ -1,5 +1,7 @@
 from Modelo.Gato import Gato
 from Controller.GatoController import GatoController
+import json
+
 
 # GATO TESTS
 mi_gato = Gato(
@@ -16,5 +18,12 @@ print(GatoController().registrar(gato3))
 
 # print(GatoController().eliminar(mi_gato))
 
-for gato in GatoController().listar():
-    print(gato)
+gatos = GatoController().listar()
+
+# for gato in gatos:
+#   print(gato)
+
+lista_gatos_dict = [gato.to_dict() for gato in gatos]
+
+json_gatos = json.dumps(lista_gatos_dict)
+print(json_gatos)

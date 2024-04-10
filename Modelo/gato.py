@@ -44,5 +44,15 @@ class Gato:
     def setFoto(self, foto):
         self.foto = foto
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre,
+            "sexo": self.sexo,
+            "disponibilidad": self.disponibilidad,
+            "edad": self.edad,
+            "foto": self.foto,
+        }
+
     def __str__(self):
-        return f"Gato(id={self.id}, nombre={self.nombre}, edad={self.edad})"
+        return f"Gato(id={self.id}, nombre={self.nombre} ,sexo={self.sexo},disponibilidad={self.disponibilidad}, edad={self.edad}, foto={self.foto})"
