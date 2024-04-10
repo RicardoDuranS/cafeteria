@@ -1,17 +1,20 @@
-from Modelo.gato import gato
-from Controller.gatoController import gatoController
+from Modelo.Gato import Gato
+from Controller.GatoController import GatoController
 
 # GATO TESTS
-mi_gato = gato(
+mi_gato = Gato(
     id=1, nombre="OptimusSSS", sexo=True, disponibilidad=True, edad=7, foto=""
 )
-gato2 = gato(nombre="OptimusModMMMM", sexo=True, disponibilidad=True, edad=7, foto="")
+gato2 = Gato(nombre="OptimusModMMMM", sexo=True, disponibilidad=True, edad=7, foto="")
 
-print(gatoController().registrar(gato2))
+gato3 = Gato(nombre="Megatron", sexo=True, disponibilidad=True, edad=0, foto="")
 
-gatoController().modificar(mi_gato)
+# print(GatoController().registrar(gato2))
+print(GatoController().registrar(gato3))
 
-print(gatoController().eliminar(mi_gato))
+# GatoController().modificar(mi_gato)
 
-for gato in gatoController().listar():
+# print(GatoController().eliminar(mi_gato))
+
+for gato in GatoController().listar():
     print(gato)

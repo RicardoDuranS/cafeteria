@@ -1,4 +1,4 @@
-class platillo:
+class Platillo:
     def __init__(self, id, nombre, descripcion, foto):
         self.id = id
         self.nombre = nombre

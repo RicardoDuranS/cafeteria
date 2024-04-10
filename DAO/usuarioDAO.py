@@ -1,10 +1,10 @@
-from Modelo.usuario import usuario
+from Modelo.Usuario import Usuario
 from ConnectionFactory.ConnectionFactory import ConnectionFactory
 import pymysql
 import mysql
 
 
-class usuarioDAO:
+class UsuarioDAO:
     def __init__(self, con):
         self.con = con.getConnection()
         self.cursor = self.con.cursor()

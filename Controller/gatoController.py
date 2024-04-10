@@ -1,11 +1,11 @@
 from ConnectionFactory.ConnectionFactory import ConnectionFactory
-from DAO.gatoDAO import gatoDAO
+from DAO.GatoDAO import GatoDAO
 
 
-class gatoController:
+class GatoController:
     def __init__(self):
         factory = ConnectionFactory()
-        self.gatoDAO = gatoDAO(factory)
+        self.gatoDAO = GatoDAO(factory)
 
     def listar(self):
         return self.gatoDAO.listar()

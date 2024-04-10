@@ -1,9 +1,9 @@
 from ConnectionFactory.ConnectionFactory import ConnectionFactory
 import mysql
-from Modelo.gato import gato
+from Modelo.Gato import Gato
 
 
-class gatoDAO:
+class GatoDAO:
     def __init__(self, con):
         self.con = con.getConnection()
         self.cursor = self.con.cursor()
@@ -40,7 +40,7 @@ class gatoDAO:
             resultados = []
             row = self.cursor.fetchone()
             while row is not None:
-                gato_obj = gato(*row)
+                gato_obj = Gato(*row)
                 resultados.append(gato_obj)
                 row = self.cursor.fetchone()
             self.close()

@@ -1,4 +1,4 @@
-class solicitud:
+class Solicitud:
     def __init__(
         self, id=None, nombre=None, correo=None, telefono=None, ciudad=None, gato=None
     ):
@@ -29,9 +29,6 @@ class solicitud:
     def getGato(self):
         return self.gato
 
-    def getSolicitudID(self):
-        return self.solicitudID
-
     # Métodos setter para cada atributo
     def setNombre(self, nombre):
         self.nombre = nombre
@@ -48,5 +45,5 @@ class solicitud:
     def setGato(self, gato):
         self.gato = gato
 
-    def setSolicitudID(self, solicitudID):
-        self.solicitudID = solicitudID
+    def __str__(self):
+        return f"Solicitud(id={self.id}, nombre={self.nombre}, correo={self.correo} , telefono={self.telefono}, ciudad={self.ciudad} ,gato={self.gato})"

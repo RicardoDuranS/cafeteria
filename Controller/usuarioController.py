@@ -1,11 +1,11 @@
 from ConnectionFactory.ConnectionFactory import ConnectionFactory
-from DAO.usuarioDAO import usuarioDAO
+from DAO.UsuarioDAO import UsuarioDAO
 
 
-class usuarioController:
+class UsuarioController:
     def __init__(self):
         factory = ConnectionFactory()
-        self.usuarioDAO = usuarioDAO(factory)
+        self.usuarioDAO = UsuarioDAO(factory)
 
     def validarUser(self, usuario):
         if self.usuarioDAO.validar(usuario):

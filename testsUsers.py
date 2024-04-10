@@ -1,7 +1,7 @@
-from Controller.usuarioController import usuarioController
-from Modelo.usuario import usuario as User
-from Modelo.gato import gato
-from Controller.gatoController import gatoController
+from Controller.UsuarioController import usuarioController
+from Modelo.Usuario import usuario as User
+from Modelo.Gato import gato
+from Controller.GatoController import gatoController
 
 # USER TESTS
 # User crear usuario

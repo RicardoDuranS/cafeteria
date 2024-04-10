@@ -1,9 +1,9 @@
 from ConnectionFactory.ConnectionFactory import ConnectionFactory
 import mysql
-from Modelo.solicitud import Solicitud
+from Modelo.Solicitud import Solicitud
 
 
-class solicitudDAO:
+class SolicitudDAO:
     def __init__(self, con):
         self.con = con.getConnection()
         self.cursor = self.con.cursor()
@@ -12,18 +12,18 @@ class solicitudDAO:
         self.cursor.close()
         self.con.close()
 
-    def guardar(self, solictud):
-        val = 1
+    def guardar(self, solicitud):
+        var = 1
         query = "INSERT INTO solicitudes(nombre, correo, telefono, ciudad, gato) VALUES (%s, %s, %s ,%s, %s)"
         try:
             self.cursor.execute(
                 query,
                 (
-                    solictud.getNombre(),
-                    solictud.getCorreo(),
-                    solictud.getTelefono(),
-                    solictud.getCiudad(),
-                    Solicitud.getGato(),
+                    solicitud.getNombre(),
+                    solicitud.getCorreo(),
+                    solicitud.getTelefono(),
+                    solicitud.getCiudad(),
+                    solicitud.getGato(),  # Asegúrate de que este método esté definido correctamente y sea accesible
                 ),
             )
             self.con.commit()
@@ -31,7 +31,7 @@ class solicitudDAO:
             var = e.args[0]
         finally:
             self.close()
-            return val
+            return var
 
     def listar(self):
         query = "SELECT * FROM solicitudes"
@@ -64,3 +64,19 @@ class solicitudDAO:
         except Exception as e:
             print(f"Error al listar las solicitudes: {e}")
             return []
+
+    def eliminar(self, solicitud):
+        var = 1
+        query = "DELETE FROM solicitudes WHERE solicitudId = %s"
+        try:
+            self.cursor.execute(query, (solicitud.getId(),))
+            self.con.commit()
+            if self.cursor.rowcount == 0:
+                print("No se encontró la solicitud para eliminar.")
+                var = 0
+        except mysql.connector.errors.IntegrityError as e:
+            var = e.args[0]
+        finally:
+            self.cursor.close()
+            self.close()
+            return var
