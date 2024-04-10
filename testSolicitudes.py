@@ -8,7 +8,7 @@ sol = Solicitud(
     ciudad="Monterrey",
     gato=27,
 )
-sol2 = Solicitud(id=3, nombre=None, correo=None, telefono=None, ciudad=None, gato=None)
+sol2 = Solicitud(id=1, nombre=None, correo=None, telefono=None, ciudad=None, gato=None)
 
 var = SolicitudController().guardar(sol)
 print(var)
